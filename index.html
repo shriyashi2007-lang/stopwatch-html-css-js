@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stop watch</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Lucida Sans';
+            border:20px;
+            border-style: groove;
+            border-color: darksalmon;
+            
+        }
+        h1{
+            font-size: 50px;
+            color: black;
+        }
+
+        #time-display{
+            font-size: 50px;
+            color: black;
+        }
+
+        #start{
+            background-color: salmon;
+            font-weight: 100px;
+            border:5px;
+            padding:  20px;
+            margin:20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        #stop{
+            background-color: salmon;
+            font-weight: 100px;
+            border:5px;
+            padding:  20px;
+            margin:20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        #reset{
+            background-color:  salmon;
+            font-weight: 100px;
+            border:5px;
+            padding:  20px;
+            margin:20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/016/935/457/small_2x/dark-salmon-gradient-color-retro-concrete-wallpaper-background-free-photo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+
+    <h1 >Stop Watch</h1>
+    <h2 id="time-display">0:0</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+    <script>
+        let h2=document.querySelector("#time-display");
+        let startBtn=document.querySelector("#start");  
+        let stopBtn=document.querySelector("#stop");
+        let resetBtn=document.querySelector("#reset");  
+        let seconds=0;
+        let minutes=0;
+        let removeInterval;
+        function startWatch(){
+            removeInterval=setInterval(()=>{
+                seconds++;
+                minutes=Math.floor(seconds/60);
+                h2.textContent=`${minutes}:${seconds%60}`;
+
+            },1000)
+
+        }
+        function stopWatch(){
+            clearInterval(removeInterval);
+        
+        }
+        startBtn.addEventListener("click",startWatch); 
+        stopBtn.addEventListener("click",stopWatch);
+        resetBtn.addEventListener("click",()=>{
+            seconds=0;
+            minutes=0;
+            h2.textContent=`${minutes}:${seconds}`;
+        })
+    </script>
+</body>
+</html>
+
